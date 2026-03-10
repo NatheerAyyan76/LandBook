@@ -6,7 +6,7 @@ import Header from './component/Header/Header';
 import LandList from './component/Header/LandCard/LandList';
 import SearchSection from './component/Header/SearchSection/SearchSection';
 import  Landdetailspage  from "./component/landdetailspage/Landgallery.jsx";
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import Mainpage from "./component/Mainpage/Mainpage.jsx";
 import Filter from './component/Header/SearchSection/Filter/Filter.jsx';
@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <div >
-         <Router>
+         <Router basename={import.meta.env.BASE_URL}>
            <Routes>
            <Route path="/" element={<Cover/>}/>
             <Route path="/Mainpage" element={<Mainpage/>}/>
@@ -47,6 +47,7 @@ function App() {
             <Route path="/Login" element={<Login/>} />
             <Route path="/Signup" element={<Signup/>} />
 
+            <Route path="*" element={<Navigate to="/" replace />} />
            </Routes>
          </Router>
       </div>
