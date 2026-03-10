@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const LandList = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   const navigate = useNavigate();
   const [lands, setLands] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null); // 👈 مودال الصورة
@@ -23,11 +24,11 @@ const LandList = () => {
   return (
     <div style={{ padding: "2rem" }}>
       <p className="description-text">
-        <img src='/lands/icon.png' style={{width: "20px", height: "20px", margin: "auto 4px"}}/>
+        <img src={`${baseUrl}lands/icon.png`} style={{width: "20px", height: "20px", margin: "auto 4px"}}/>
         <em style={{margin:"25px auto"}}>
           This website gives you lands for investment in agricultural way. Here you see some of our lands
         </em>
-        <img src='./lands/icon.png' style={{width: "20px", height: "20px", margin: "auto 6px", marginBottom: "-4px"}}/>
+        <img src={`${baseUrl}lands/icon.png`} style={{width: "20px", height: "20px", margin: "auto 6px", marginBottom: "-4px"}}/>
       </p>
 
       <h2>Lands in Syria</h2>
@@ -51,15 +52,15 @@ const LandList = () => {
                 {/* معلومات إضافية */}
                 <div className={styles.info}>
                   <span>
-                    <img src="/lands/dollers.png" alt="Price" style={{width: "18px", height: "18px"}}/>
+                    <img src={`${baseUrl}lands/dollers.png`} alt="Price" style={{width: "18px", height: "18px"}}/>
                     {land.price}
                   </span>
                   <span>
-                    <img src="/lands/house.jpg" alt="Area" style={{width: "18px", height: "18px"}}/>
+                    <img src={`${baseUrl}lands/house.jpg`} alt="Area" style={{width: "18px", height: "18px"}}/>
                     {land.area} Dunams
                   </span>
                   <span>
-                    <img src="/lands/Land location.jpg" alt="City" style={{width: "18px", height: "18px"}}/>
+                    <img src={`${baseUrl}lands/Land location.jpg`} alt="City" style={{width: "18px", height: "18px"}}/>
                     {land.city}
                   </span>
                 </div>
@@ -68,11 +69,11 @@ const LandList = () => {
                 <div className={styles.footer}>
                   <div className={styles.ownerInfo}>
                     <img
-                      src={land.userPhoto || "/lands/profile-circle.png"}
+                      src={land.userPhoto || `${baseUrl}lands/profile-circle.png`}
                       alt={`${land.firstName} ${land.lastName}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedImage(land.userPhoto || "/lands/profile-circle.png");
+                        setSelectedImage(land.userPhoto || `${baseUrl}lands/profile-circle.png`);
                       }}
                     />
                     <span>{land.firstName} {land.lastName}</span>

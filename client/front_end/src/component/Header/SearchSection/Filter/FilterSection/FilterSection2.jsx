@@ -47,6 +47,7 @@ const LandFilter = () => {
 
 const FilterSection2 = () => {
   // بيانات الأراضي
+  const baseUrl = import.meta.env.BASE_URL;
   const [lands, setLands] = useState([]);
   const [filteredLands, setFilteredLands] = useState([]);
 
@@ -242,15 +243,15 @@ const FilterSection2 = () => {
             <div className="property-details">
               <div className="property-header">
                 <p style={{display:"flex"}}>
-                  <img src="/lands/dollers.png" style={{width: "20px",height: "20px"}} />
+                  <img src={`${baseUrl}lands/dollers.png`} style={{width: "20px",height: "20px"}} />
                   <div className="property-price">{property.price}</div>
                 </p>
                 <p style={{display:"flex"}}>
-                  <img src="/lands/house.jpg" style={{width: "20px",height: "20px",marginRight: "4px"}} />
+                  <img src={`${baseUrl}lands/house.jpg`} style={{width: "20px",height: "20px",marginRight: "4px"}} />
                   <div className="property-size">{property.area} Dunmas</div>
                 </p>
                 <p style={{display:"flex"}}>
-                  <img src="/lands/Land location.jpg" style={{width: "20px",height: "20px",marginRight: "4px"}} />
+                  <img src={`${baseUrl}lands/Land location.jpg`} style={{width: "20px",height: "20px",marginRight: "4px"}} />
                   <div className="property-location">{property.city}</div>
                 </p>
               </div>
@@ -260,9 +261,9 @@ const FilterSection2 = () => {
               <div className="property-footer">
                  <div className="owner-info">
                    <img
-                      src={property.userPhoto || "/lands/profile-circle.png"}
+                      src={property.userPhoto || `${baseUrl}lands/profile-circle.png`}
                       alt={`${property.firstName} ${property.lastName}`}
-                      onClick={() => setSelectedImage(property.userPhoto || "/lands/profile-circle.png")}
+                      onClick={() => setSelectedImage(property.userPhoto || `${baseUrl}lands/profile-circle.png`)}
                       style={{cursor: "pointer"}}
                     />
                    {property.firstName} {property.lastName}

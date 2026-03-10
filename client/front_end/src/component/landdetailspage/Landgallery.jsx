@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import { useState,useEffect } from "react";
 const Landgallery = () => { 
+  const baseUrl = import.meta.env.BASE_URL;
   const [detials,setdetials] = useState({})
   const [table,settable] = useState([])
   const [landImages, setLandImages] = useState([]);
@@ -87,10 +88,10 @@ const Landgallery = () => {
     <Header/>
     
     <div className="containerr">
-      <img src='../public/lands/icon.png' style={{width: "20px"
+      <img src={`${baseUrl}lands/icon.png`} style={{width: "20px"
                      , height: "20px" , margin: "auto 4px"}}/>
        <em style={{margin:"25px auto"}}>And now you can see the details and every thing about the land you chose</em>
-       <img src='../public/lands/icon.png' style={{width: "20px"
+       <img src={`${baseUrl}lands/icon.png`} style={{width: "20px"
                      , height: "20px" , margin: "auto  6px",marginBottom: "-4px"}}/>
       <div className="image-grid">
       {/* {landImages.map((src, idx) => (
@@ -168,16 +169,16 @@ const Landgallery = () => {
         {/* {detials.landMedia.ownershipPhoto} */}
         <div className="info-card-details1">
           <div className='content1'>
-            <h3><span className="icon1"><img src='/lands/profile-circle.png' style={{width: "20px",height: "20px",marginBottom: "-3px"}}></img>
+            <h3><span className="icon1"><img src={`${baseUrl}lands/profile-circle.png`} style={{width: "20px",height: "20px",marginBottom: "-3px"}}></img>
              {detials.firstName}{detials.lastName}</span></h3>
             <p>
-              <span className="icon1"><img src='/lands/phone_icon.png' style={{width:" 23px",marginBottom:"-4px"}}></img></span>
+              <span className="icon1"><img src={`${baseUrl}lands/phone_icon.png`} style={{width:" 23px",marginBottom:"-4px"}}></img></span>
               {/* <a href="tel:+963944015895">
                 {detials.phone.areaCode}{detials.phone.number}</a> */}
             </p>
             <p>
               <span className="icon1">
-                <img src="/lands/sms.png" alt="" style={{marginbBottom: "-6px",width: "21px"}} />
+                <img src={`${baseUrl}lands/sms.png`} alt="" style={{marginbBottom: "-6px",width: "21px"}} />
                 </span>
               <a href="mailto:taha@sy.com">{detials.email}</a>
             </p>

@@ -4,6 +4,7 @@ import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -57,7 +58,7 @@ export default function Login() {
           <h4 className="title-welcome">Welcome Back</h4>
           <img
             className="img-welcome"
-            src="/lands/landbook.jpg"
+            src={`${baseUrl}lands/landbook.jpg`}
             width="60"
             height="40"
             alt="Logo"

@@ -4,6 +4,7 @@ import Header from "../Header";
 import Footer from "../../Footer/Footer";
 
 export default function ContactForm() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -54,7 +55,7 @@ export default function ContactForm() {
     <>
       <Header />
       <div className="imagetofram">
-        <img src="/lands/fram.png" alt="farm banner" />
+        <img src={`${baseUrl}lands/fram.png`} alt="farm banner" />
       </div>
 
       <div className="max-w-5xl mx-auto p-6">

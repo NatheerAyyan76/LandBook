@@ -4,6 +4,7 @@ import "./Signup.css";
 import {useNavigate} from 'react-router-dom';
 
 export default function Signup() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,7 +59,7 @@ export default function Signup() {
     <div className="welcome">
     <div className="title-img-welcome tf">
           <h4 className="title-welcome">Create Account</h4>
-          <img className="img-create" src="/lands/landbook.jpg" width="60" height="40" alt="Logo" />
+          <img className="img-create" src={`${baseUrl}lands/landbook.jpg`} width="60" height="40" alt="Logo" />
     </div>
       <form onSubmit={handleSubmit} className="form-welcome-f">
         <div className="tf">

@@ -8,6 +8,7 @@ import Header from '../../../Header';
 
 const ReasultSearch = () => {
 // بيانات الأراضي
+const baseUrl = import.meta.env.BASE_URL;
 const [lands, setLands] = useState([]);
 const [filteredLands,setFilteredLands] = useState([]);
 const [filtered, setFiltered] = useState([]);
@@ -58,17 +59,17 @@ useEffect(() => {
               <div className="property-header1">
 
               <p style={{display:"flex"}}>
-                <img src="/lands/dollers.png" style={{width: "20px",height: "20px"}} />
+                <img src={`${baseUrl}lands/dollers.png`} style={{width: "20px",height: "20px"}} />
                 <div className="property-price1">{property.price}</div>
               </p>
 
               <p style={{display:"flex"}}>
-                 <img src="/lands/house.jpg" style={{width: "20px",height: "20px",marginRight: "4px"}} />
+                 <img src={`${baseUrl}lands/house.jpg`} style={{width: "20px",height: "20px",marginRight: "4px"}} />
                  <div className="property-size1">{property.area} Dunmas</div>
 
              </p>
              <p style={{display:"flex"}}>
-                 <img src="/lands/Land location.jpg" style={{width: "20px",height: "20px",marginRight: "4px"}} />
+                 <img src={`${baseUrl}lands/Land location.jpg`} style={{width: "20px",height: "20px",marginRight: "4px"}} />
                  <div className="property-location1">
                    {property.city}
                  </div>
@@ -80,7 +81,7 @@ useEffect(() => {
               <div className="property-footer1">
                 <div className="owner-info1">
                   <span className="owner-icon1">
-                  <img src="/lands/profile-circle.png" style={{width: "20px",height: "20px",marginRight: "4px"}} />
+                  <img src={`${baseUrl}lands/profile-circle.png`} style={{width: "20px",height: "20px",marginRight: "4px"}} />
                   </span>
                   {property.firstName} {property.lastName}
                 </div>

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function Mainpage() {
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.BASE_URL;
   const gotoContactForm = () => {
     navigate("/ContactForm");
   };
@@ -21,7 +22,7 @@ function Mainpage() {
       <Advisors/>
 
       <div className="imagetofram" style={{ position: "relative", marginBottom: "61px" }}>
-        <img src="/lands/fram.png" alt="frame"/>
+        <img src={`${baseUrl}lands/fram.png`} alt="frame"/>
         <div style={{
           display: "flex",
           justifyContent: "center",
