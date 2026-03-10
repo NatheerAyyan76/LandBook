@@ -16,7 +16,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/LandBook/',   // GitHub Pages
+  // Use relative base so it works on GitHub Pages regardless of repo name/path
+  base: './',
   plugins: [react()],
   server: {
     proxy: {
