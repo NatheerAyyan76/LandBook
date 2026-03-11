@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './LandCard.module.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "../../../utils/apiBase";
 
 const LandList = () => {
   const baseUrl = import.meta.env.BASE_URL;
@@ -12,7 +13,7 @@ const LandList = () => {
   useEffect(() => {
     const fetchLands = async () => {
       try {
-        const res = await axios.get("/api/v1/lands/");
+        const res = await axios.get(`${API_BASE}/api/v1/lands/`);
         setLands(res.data.data.lands);
       } catch (error) {
         console.log("error fetching lands:", error);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Header from '../../../Header';
+import { API_BASE } from "../../../../../utils/apiBase";
 
 
 const ReasultSearch = () => {
@@ -19,7 +20,7 @@ useEffect (() => {
   const fetchLands = async () => {
     try {
       console.log('aaaayybbbbbbbvv') ;
-      const res = await axios.get("/api/v1/lands/")
+      const res = await axios.get(`${API_BASE}/api/v1/lands/`)
       // console.log(res.data);
       setLands(res.data.data.lands) ; 
       setFiltered(res.data.data.lands) ; 

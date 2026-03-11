@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Cover() {
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.BASE_URL;
 
   const goToMain = () => {
     navigate("/Mainpage"); 
@@ -28,14 +29,14 @@ function Cover() {
      </div>
 
      <div className="cover-images">
-       <div className="div1"> <img src="../../../public/cover/p1.png" /></div>
+       <div className="div1"> <img src={`${baseUrl}cover/p1.png`} /></div>
        <div className="div2">
-          <img src="../../../public/cover/p2.jpg" alt="Land Book" />
-          <img src="../../../public/cover/p3.jpg" alt="Land Book" />
+          <img src={`${baseUrl}cover/p2.jpg`} alt="Land Book" />
+          <img src={`${baseUrl}cover/p3.jpg`} alt="Land Book" />
        </div>
        <div className="div3">
-          <img src="../../../public/cover/p4.png" alt="Land Book" />
-          <img src="../../../public/cover/p5.jpg" alt="Land Book" />
+          <img src={`${baseUrl}cover/p4.png`} alt="Land Book" />
+          <img src={`${baseUrl}cover/p5.jpg`} alt="Land Book" />
        </div>
      </div>
    </div>

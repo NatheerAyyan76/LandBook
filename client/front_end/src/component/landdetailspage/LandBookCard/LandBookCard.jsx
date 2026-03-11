@@ -1,54 +1,82 @@
-import React from 'react';
-import './LandBookCard.css'; // ربط ملف CSS
-import { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useState,useEffect } from "react";
+import React, { useEffect, useMemo, useState } from 'react';
+import './LandBookCard.css';
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { API_BASE } from "../../../utils/apiBase";
 
-export default function LandBookCard() {
-  const [land ,setLand] = useState([""]);
-  useEffect (() => {
-    const fetchLands = async () => {
+export default function LandBookCard({ land: landProp }) {
+  const { id } = useParams();
+  const [land, setLand] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (landProp) {
+      setLand(landProp);
+      return;
+    }
+    if (!id) return;
+
+    const fetchLand = async () => {
       try {
-        console.log('aaaayybbbbbbbvv') ;
-        const res = await axios.get(`/api/v1/lands/${id}`);
-        setLand(res.data.data.lands) ; 
+        setLoading(true);
+        setError("");
+        const res = await axios.get(`${API_BASE}/api/v1/lands/${id}`);
+        setLand(res.data?.data?.land ?? null);
+      } catch (e) {
+        setError(e?.response?.data?.message || e?.message || "Failed to load land");
+      } finally {
+        setLoading(false);
       }
-      catch(error) {
-        console.log("errorrrrrrrr") ; 
-      }
-    } ;
-  
-    fetchLands() ; 
-  },[]);
+    };
+
+    fetchLand();
+  }, [id, landProp]);
+
+  const ownerName = useMemo(() => {
+    const first = land?.firstName || "";
+    const last = land?.lastName || "";
+    const name = `${first} ${last}`.trim();
+    return name || "Owner";
+  }, [land]);
 
   return (
-    // <div className="contact-container-card">
-    //   <div className="contact-card">
-    //     <img
-    //       src="../public/Advisors/p5.jpg" // استبدله بالرابط الصحيح للصورة
-    //       alt="Profile"
-    //       className="profile-pic"
-    //     />
-    //     <div className="info-card-details">
-    //       <div className='content'>
-    //           {/* <Infonamecontext.provide> */}
-    //         <h3><span className="icon"><img src='./public/lands/profile-circle.png' style={{width: "20px",height: "20px",marginBottom: "-3px"}}></img></span></h3>
-    //         {/* </Infonamecontext.provide> */}
-    //         <p>
-    //           <span className="icon"><img src='./public/lands/phone_icon.png' style={{width:" 23px",marginBottom:"-4px"}}></img></span>
-    //           {/* <a href="tel:+963944015895">{land.phone.areaCode}{land.phone.number}</a> */}
-    //         </p>
-    //         <p>
-    //           <span className="icon"><img src="./public/lands/sms.png" alt="" style={{marginbBottom: "-6px",width: "21px"}} /></span>
-    //           <a href="mailto:taha@sy.com">{land.email}</a>
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="bottom-button">
-    //     <button className="button-readmore">Book the land</button>
-    //   </div>
-    //   </div>
-    // </div>
-    <></>
+    <div className="contact-container-card">
+      <div className="contact-card">
+        {loading && <p>Loading...</p>}
+        {!!error && <p style={{ color: "crimson" }}>{error}</p>}
+
+        {land && (
+          <>
+            <img
+              src={land.userPhoto || `${import.meta.env.BASE_URL}lands/profile-circle.png`}
+              alt={ownerName}
+              className="profile-pic"
+            />
+
+            <div className="info-card-details1">
+              <div className="content1">
+                <h3>{ownerName}</h3>
+                {land.email ? <p><a href={`mailto:${land.email}`}>{land.email}</a></p> : null}
+                <p>
+                  {land.city ? <span>{land.city}</span> : null}
+                  {land.price != null ? <span> · {land.price} $</span> : null}
+                </p>
+              </div>
+            </div>
+
+            <div className="bottom-button">
+              <button
+                className="button-readmore"
+                type="button"
+                onClick={() => alert("Booking flow not implemented yet")}
+              >
+                Book the land
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }

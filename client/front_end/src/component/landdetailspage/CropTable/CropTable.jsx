@@ -3,6 +3,7 @@ import "./CropTable.css"; // تأكد من استيراد ملف CSS
 import axios from "axios";
 import { useState,useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { API_BASE } from "../../../utils/apiBase";
 
 const CropTable = () => {
 
@@ -10,7 +11,7 @@ const CropTable = () => {
   let { id } = useParams();
 
   useEffect (()=> { 
-    axios.get(`/api/histories/land/${id}`)
+    axios.get(`${API_BASE}/api/histories/land/${id}`)
     .then(res => {
       console.log("id = ",id);
       console.log(res.data.data || [])

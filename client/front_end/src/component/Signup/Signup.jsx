@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Signup.css";
 import {useNavigate} from 'react-router-dom';
+import { API_BASE } from "../../utils/apiBase";
 
 export default function Signup() {
   const baseUrl = import.meta.env.BASE_URL;
@@ -21,7 +22,7 @@ export default function Signup() {
 
     try {
       // استخدم الرابط الكامل للباك إند الخاص بك هنا
-      const res = await axios.post("/api/v1/users/signup", {
+      const res = await axios.post(`${API_BASE}/api/v1/users/signup`, {
             name: fullName,          // الاسم الكامل
             email: email,            // البريد
             password: password,      // كلمة المرور

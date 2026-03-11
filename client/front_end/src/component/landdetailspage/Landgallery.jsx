@@ -9,16 +9,16 @@ import CropTable from '../landdetailspage/CropTable/CropTable';
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import { useState,useEffect } from "react";
+import { API_BASE } from "../../utils/apiBase";
 const Landgallery = () => { 
   const baseUrl = import.meta.env.BASE_URL;
   const [detials,setdetials] = useState({})
-  const [table,settable] = useState([])
   const [landImages, setLandImages] = useState([]);
   let { id } = useParams();
 
 
   useEffect (()=> { 
-    axios.get(`/api/v1/lands/${id}`)
+    axios.get(`${API_BASE}/api/v1/lands/${id}`)
     .then(res => {
       console.log(res.data.data.land)
       setdetials(res.data.data.land);
@@ -48,41 +48,6 @@ const Landgallery = () => {
   //   "/public/landdetailspage/p4.jpg",
   //   "/public/landdetailspage/p5.jpg",
   // ];
-  const initialComments = [
-    {
-      name: 'Yaman Attar',
-      date: '16 July, 2022',
-      stars: 4,
-      comment:
-    'After touring the agricultural land, I was impressed by the rich soil quality and its potential for high crop yields.'  },
-    {
-      name: 'Haya Bawwab',
-      date: '12 April, 2022',
-      stars: 3,
-      comment:
-      'Many farmers believe that the irrigation system in this area needs improvement to maximize productivity.'
-    },
-  ];
-  const handlePost = () => {
-    if (newComment.trim()) {
-      setComments([
-        ...comments,
-        {
-          name: 'Anonymous',
-          date: new Date().toLocaleDateString(),
-          stars: rating,
-          comment: newComment,
-        },
-      ]);
-      setNewComment('');
-      setRating(0);
-    }
-  };
- 
-  const [comments, setComments] = useState(initialComments);
-  const [newComment, setNewComment] = useState('');
-  const [rating, setRating] = useState(0);
-
   return (
     <>
     <Header/>
@@ -189,6 +154,7 @@ const Landgallery = () => {
       </div>
       </div>
     </div>
+    <LandBookingCard land={detials} />
     <CommentSection/>
     {/* <div className="comment-container">
       <div className="add-comment">

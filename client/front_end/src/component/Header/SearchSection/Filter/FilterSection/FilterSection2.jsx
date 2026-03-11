@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FilterSection.css';
 import axios from 'axios';
+import { API_BASE } from "../../../../../utils/apiBase";
 
 
 
@@ -8,7 +9,7 @@ const LandFilter = () => {
   const [lands, setLands] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/v1/lands")
+    axios.get(`${API_BASE}/api/v1/lands`)
       .then(res => {
         setLands(res.data.data.lands); // تأكد من نفس المفتاح اللي راجع من الـ API
       })
@@ -73,7 +74,7 @@ const FilterSection2 = () => {
   useEffect(() => {
     const fetchLands = async () => {
       try {
-        const res = await axios.get("/api/v1/lands");
+        const res = await axios.get(`${API_BASE}/api/v1/lands`);
         const data = Array.isArray(res.data.data.lands) ? res.data.data.lands : [];
         setLands(data);
         setFilteredLands(data);

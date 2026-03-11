@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.BASE_URL;
   const goToHome = () => {
     navigate('/Mainpage');
   }
@@ -18,7 +19,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img src="../public/lands/landbook.jpg" alt="LandBook" />
+        <img src={`${baseUrl}lands/landbook.jpg`} alt="LandBook" />
       </div>
       <nav className="nav-links">
         <a  onClick={goToHome} href="">Home</a>
